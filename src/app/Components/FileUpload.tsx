@@ -1,4 +1,20 @@
-import axios from "axios";
+'use client';
+
+import {
+  addFiles,
+  clearFiles,
+  removeFile,
+} from "@/app/redux/AssignmentSlice/AssignmentSlice";
+import { RootState, useAppDispatch } from "@/app/redux/store";
+import { uploadFiles } from "@/app/redux/AssignmentSlice/AssignmentThunk";
+import {
+  FileMeta,
+  FileInputProps,
+  ActionButtonsProps,
+  FileListProps,
+  FileItemProps,
+  ProgressBarProps,
+} from "@/app/redux/AssignmentSlice/AssignmentTypes";
 import {
   FileAudio,
   FileIcon,
@@ -11,30 +27,16 @@ import {
   X,
 } from "lucide-react";
 import { ChangeEvent, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addFiles,
-  clearFiles,
-  removeFile,
-  updateProgress,
-  markUploaded,
-} from "@/app/redux/AssignmentSlice/AssignmentSlice"; // adjust path
-import { RootState } from "../redux/store";
-import {
-  ActionButtonsProps,
-  FileInputProps,
-  FileItemProps,
-  FileListProps,
-  ProgressBarProps,
-  FileMeta,
-} from "@/app/redux/AssignmentSlice/AssignmentTypes";
+import { useSelector } from "react-redux";
+
+import UploadedFiles from "./UploadedFiles";
 
 export function FileUpload() {
-  const dispatch = useDispatch();
+  
+  const dispatch = useAppDispatch();
   const files = useSelector((state: RootState) => state.Assignments.items);
   const uploading = useSelector((state: RootState) => state.Assignments.uploading);
 
-  // Local map for non-serializable File objects
   const [fileMap, setFileMap] = useState<Map<string, File>>(new Map());
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -64,28 +66,15 @@ export function FileUpload() {
     if (inputRef.current) inputRef.current.value = "";
   }
 
-  async function handleUpload() {
-    for (const file of files) {
-      const realFile = fileMap.get(file.id);
-      if (!realFile) continue;
+  function handleUpload() {
+    const fileWithProgress = files.map((f) => ({
+      id: f.id,
+      file: fileMap.get(f.id)!,
+      progress: f.progress,
+      uploaded: f.uploaded,
+    }));
 
-      const formData = new FormData();
-      formData.append("file", realFile);
-
-      try {
-        await axios.post("https://httpbin.org/post", formData, {
-          onUploadProgress: (progressEvent) => {
-            const progress = Math.round(
-              (progressEvent.loaded * 100) / (progressEvent.total || 1)
-            );
-            dispatch(updateProgress({ id: file.id, progress }));
-          },
-        });
-        dispatch(markUploaded(file.id));
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    dispatch(uploadFiles(fileWithProgress));
   }
 
   function handleClear() {
@@ -116,16 +105,16 @@ export function FileUpload() {
         />
       </div>
       <FileList
-        files={files.map((meta) => ({
-          ...meta,
-          file: fileMap.get(meta.id)!
-        }))}
+        files={files}
         onRemove={handleRemove}
         uploading={uploading}
       />
+      <UploadedFiles/>
     </div>
   );
 }
+
+// --- Subcomponents ---
 
 function FileInput({ inputRef, disabled, onFileSelect }: FileInputProps) {
   return (
@@ -150,11 +139,17 @@ function FileInput({ inputRef, disabled, onFileSelect }: FileInputProps) {
   );
 }
 
-function ActionButtons({  onClear, disabled }: ActionButtonsProps) {
+function ActionButtons({ onUpload, onClear, disabled }: ActionButtonsProps) {
   return (
     <>
-   
-   
+      <button
+        onClick={onUpload}
+        className="flex items-center gap-2"
+        disabled={disabled}
+      >
+        <Upload size={18} />
+        Upload All
+      </button>
       <button
         onClick={onClear}
         className="flex items-center gap-2"
@@ -229,6 +224,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
   );
 }
 
+// --- Helpers ---
 const getFileIcon = (mimeType: string) => {
   if (mimeType.startsWith("image/")) return FileImage;
   if (mimeType.startsWith("video/")) return FileVideo;

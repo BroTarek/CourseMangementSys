@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FileMeta } from "./AssignmentTypes";
+import { uploadFiles } from "./AssignmentThunk";
 
 type FilesState = {
   items: FileMeta[];
@@ -25,9 +26,16 @@ const filesSlice = createSlice({
       const file = state.items.find((f) => f.id === action.payload.id);
       if (file) file.progress = action.payload.progress;
     },
-    markUploaded: (state, action: PayloadAction<string>) => {
-      const file = state.items.find((f) => f.id === action.payload);
-      if (file) file.uploaded = true;
+    // ✅ Now accepts both id and fileUrl
+    markUploaded: (
+      state,
+      action: PayloadAction<{ id: string; fileUrl: string }>
+    ) => {
+      const file = state.items.find((f) => f.id === action.payload.id);
+      if (file) {
+        file.uploaded = true;
+        file.fileUrl = action.payload.fileUrl;
+      }
     },
     clearFiles: (state) => {
       state.items = [];
@@ -35,6 +43,18 @@ const filesSlice = createSlice({
     removeFile: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((f) => f.id !== action.payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(uploadFiles.pending, (state) => {
+        state.uploading = true;
+      })
+      .addCase(uploadFiles.fulfilled, (state) => {
+        state.uploading = false;
+      })
+      .addCase(uploadFiles.rejected, (state) => {
+        state.uploading = false;
+      });
   },
 });
 

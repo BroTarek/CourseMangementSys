@@ -16,6 +16,7 @@ export type SubmittedHW={
 }
 
 // Serializable metadata for Redux
+// Serializable metadata for Redux
 export type FileMeta = {
   id: string;
   name: string;
@@ -23,6 +24,7 @@ export type FileMeta = {
   type: string;
   progress: number;
   uploaded: boolean;
+  fileUrl?: string;   // ✅ add file URL
 };
 
 // Local map for keeping the actual File objects
