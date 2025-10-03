@@ -1,15 +1,27 @@
-import { configureStore } from '@reduxjs/toolkit';
+'use client'
 
-// Example: import your reducers here
-import tutorReducer from '@/app/redux/TutorSlice/TutorSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import AssignmentsReducer from "@/app/redux/AssignmentSlice/AssignmentSlice"; // replace with your slice
+import { useDispatch } from "react-redux";
+
+
 
 export const store = configureStore({
-    reducer: {
-        tutor: tutorReducer,
-        
-    },
+   reducer: {
+    Assignments: AssignmentsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["files/addFiles"], // your slice action
+        ignoredPaths: ["files.items"],      // your state path
+      },
+    }),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+
+// Types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
