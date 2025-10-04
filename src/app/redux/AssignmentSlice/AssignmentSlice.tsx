@@ -27,16 +27,19 @@ const filesSlice = createSlice({
       if (file) file.progress = action.payload.progress;
     },
     // ✅ Now accepts both id and fileUrl
-    markUploaded: (
-      state,
-      action: PayloadAction<{ id: string; fileUrl: string }>
-    ) => {
-      const file = state.items.find((f) => f.id === action.payload.id);
-      if (file) {
-        file.uploaded = true;
-        file.fileUrl = action.payload.fileUrl;
-      }
-    },
+   markUploaded: (
+  state,
+  action: PayloadAction<{ id: string; fileUrl: string; originalName: string; public_id: string }>
+) => {
+  const file = state.items.find((f) => f.id === action.payload.id);
+  if (file) {
+    file.uploaded = true;
+    file.fileUrl = action.payload.fileUrl;
+    file.originalName = action.payload.originalName;
+    file.public_id = action.payload.public_id;
+  }
+},
+
     clearFiles: (state) => {
       state.items = [];
     },

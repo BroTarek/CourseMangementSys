@@ -24,8 +24,11 @@ export type FileMeta = {
   type: string;
   progress: number;
   uploaded: boolean;
-  fileUrl?: string;   // ✅ add file URL
+  fileUrl?: string;       // ✅ new
+  originalName?: string;  // ✅ new
+  public_id?: string;     // ✅ new
 };
+
 
 // Local map for keeping the actual File objects
 export type FileWithBlob = {
