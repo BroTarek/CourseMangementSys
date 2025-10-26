@@ -1,65 +1,133 @@
-import Image from "next/image";
+'use client'
+import React, { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/app/redux/store'
+import {
+  setFiles,
+  clearAll,
+  changeTitleOfSpecificFile,
+} from '@/app/redux/Assignments/AssignmentSlice'
+import { uploadFile } from '@/app/redux/Assignments/AssignmentThunk'
+import type { CustomFile } from '@/app/redux/Assignments/AssignmentTypes'
 
-export default function Home() {
+export default function AssignmentUploader() {
+  const dispatch = useAppDispatch()
+  const { files, arePending } = useAppSelector((state) => state.AssignmentReducer)
+
+  const [showPopup, setShowPopup] = useState(false)
+  const [editingFileId, setEditingFileId] = useState<string | null>(null)
+  const [tempTitle, setTempTitle] = useState('')
+
+  const handleSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(e.target.files || [])
+    const newFiles: CustomFile[] = selectedFiles.map((file) => ({
+      id: crypto.randomUUID(),
+      file,
+      upload: false,
+      progress: 0,
+      title: file.name,
+    }))
+    dispatch(setFiles(newFiles))
+  }
+
+  const handleUpload = async () => {
+    if (files.length === 0) return
+    await dispatch(uploadFile(files))
+    setShowPopup(true)
+    setTimeout(() => setShowPopup(false), 2000)
+  }
+
+  const handleEdit = (file: CustomFile) => {
+    setEditingFileId(file.id)
+    setTempTitle(file.title)
+  }
+
+  const handleSaveTitle = (fileId: string) => {
+    if (!tempTitle.trim()) return
+    dispatch(changeTitleOfSpecificFile({ id: fileId, title: tempTitle }))
+    setEditingFileId(null)
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+      <div className="bg-white shadow-md rounded-2xl p-6 w-full max-w-lg">
+        <h1 className="text-2xl font-semibold mb-4 text-center">📂 Assignment Uploader</h1>
+
+        <input
+          type="file"
+          multiple
+          onChange={handleSelectFiles}
+          className="mb-4 w-full border p-2 rounded-lg"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="flex justify-between mb-4">
+          <button
+            onClick={handleUpload}
+            disabled={arePending || files.length === 0}
+            className={`px-4 py-2 rounded-lg text-white transition ${
+              arePending
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700'
+            }`}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {arePending ? 'Uploading...' : 'Upload'}
+          </button>
+
+          <button
+            onClick={() => dispatch(clearAll())}
+            className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
           >
-            Documentation
-          </a>
+            Clear All
+          </button>
         </div>
-      </main>
+
+        <div className="space-y-3">
+          {files.map((file) => (
+            <div
+              key={file.id}
+              className="border rounded-lg p-3 bg-gray-50 shadow-sm"
+            >
+              {editingFileId === file.id ? (
+                <input
+                  className="border p-1 rounded w-full mb-2"
+                  value={tempTitle}
+                  autoFocus
+                  onChange={(e) => setTempTitle(e.target.value)}
+                  onBlur={() => handleSaveTitle(file.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleSaveTitle(file.id)
+                  }}
+                />
+              ) : (
+                <div className="flex justify-between items-center mb-2">
+                  <p className="font-medium text-gray-800">{file.title}</p>
+                  <button
+                    onClick={() => handleEdit(file)}
+                    className="text-blue-600 hover:text-blue-800 text-sm"
+                  >
+                    ✏️ Edit
+                  </button>
+                </div>
+              )}
+
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div
+                  className="bg-green-500 h-3 rounded-full transition-all duration-300"
+                  style={{ width: `${file.progress}%` }}
+                ></div>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                {file.progress}% uploaded
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {showPopup && (
+        <div className="fixed top-10 right-10 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-bounce">
+          ✅ All files uploaded successfully!
+        </div>
+      )}
     </div>
-  );
+  )
 }
