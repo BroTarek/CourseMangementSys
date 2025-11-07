@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/redux/store'
 import {
@@ -9,13 +10,31 @@ import {
 import { uploadFile } from '@/app/redux/Assignments/AssignmentThunk'
 import type { CustomFile } from '@/app/redux/Assignments/AssignmentTypes'
 
-export default function AssignmentUploader() {
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
+import { useToast } from '@/hooks/use-toast'
+import { SelectOption } from './blocks/SelectOption'
+import { GroupSection } from './blocks/GroupsSection'
+
+export default function AssignmentPage() {
   const dispatch = useAppDispatch()
   const { files, arePending } = useAppSelector((state) => state.AssignmentReducer)
 
-  const [showPopup, setShowPopup] = useState(false)
   const [editingFileId, setEditingFileId] = useState<string | null>(null)
   const [tempTitle, setTempTitle] = useState('')
+  const { toast } = useToast()
 
   const handleSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || [])
@@ -32,8 +51,11 @@ export default function AssignmentUploader() {
   const handleUpload = async () => {
     if (files.length === 0) return
     await dispatch(uploadFile(files))
-    setShowPopup(true)
-    setTimeout(() => setShowPopup(false), 2000)
+    toast({
+      title: '✅ Upload Complete',
+      description: 'All files uploaded successfully!',
+      variant: 'default',
+    })
   }
 
   const handleEdit = (file: CustomFile) => {
@@ -48,86 +70,124 @@ export default function AssignmentUploader() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white shadow-md rounded-2xl p-6 w-full max-w-lg">
-        <h1 className="text-2xl font-semibold mb-4 text-center">📂 Assignment Uploader</h1>
+    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-8">
+      <Card className="w-full max-w-6xl shadow-lg border border-border/60">
+        <CardHeader className="text-center space-y-1">
+          <CardTitle className="text-2xl font-semibold">📂 Assignment Management</CardTitle>
+          <CardDescription>Upload assignments and assign them to student groups</CardDescription>
+        </CardHeader>
 
-        <input
-          type="file"
-          multiple
-          onChange={handleSelectFiles}
-          className="mb-4 w-full border p-2 rounded-lg"
-        />
+        <CardContent>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left side — Uploader */}
+            <div className="space-y-6">
+              <h2 className="text-lg font-semibold">Upload Assignments</h2>
 
-        <div className="flex justify-between mb-4">
-          <button
-            onClick={handleUpload}
-            disabled={arePending || files.length === 0}
-            className={`px-4 py-2 rounded-lg text-white transition ${
-              arePending
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
-            }`}
-          >
-            {arePending ? 'Uploading...' : 'Upload'}
-          </button>
+              <Input
+                type="file"
+                multiple
+                onChange={handleSelectFiles}
+                className="cursor-pointer"
+              />
 
-          <button
-            onClick={() => dispatch(clearAll())}
-            className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
-          >
-            Clear All
-          </button>
-        </div>
+              <div className="flex justify-between gap-3">
+                <Button
+                  onClick={handleUpload}
+                  disabled={arePending || files.length === 0}
+                  variant={arePending ? 'secondary' : 'default'}
+                >
+                  {arePending ? 'Uploading...' : 'Upload'}
+                </Button>
 
-        <div className="space-y-3">
-          {files.map((file) => (
-            <div
-              key={file.id}
-              className="border rounded-lg p-3 bg-gray-50 shadow-sm"
-            >
-              {editingFileId === file.id ? (
-                <input
-                  className="border p-1 rounded w-full mb-2"
-                  value={tempTitle}
-                  autoFocus
-                  onChange={(e) => setTempTitle(e.target.value)}
-                  onBlur={() => handleSaveTitle(file.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') handleSaveTitle(file.id)
-                  }}
-                />
-              ) : (
-                <div className="flex justify-between items-center mb-2">
-                  <p className="font-medium text-gray-800">{file.title}</p>
-                  <button
-                    onClick={() => handleEdit(file)}
-                    className="text-blue-600 hover:text-blue-800 text-sm"
-                  >
-                    ✏️ Edit
-                  </button>
-                </div>
-              )}
-
-              <div className="w-full bg-gray-200 rounded-full h-3">
-                <div
-                  className="bg-green-500 h-3 rounded-full transition-all duration-300"
-                  style={{ width: `${file.progress}%` }}
-                ></div>
+                <Button
+                  onClick={() => dispatch(clearAll())}
+                  variant="destructive"
+                >
+                  Clear All
+                </Button>
               </div>
-              <p className="text-xs text-gray-500 mt-1">
-                {file.progress}% uploaded
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {showPopup && (
-        <div className="fixed top-10 right-10 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-bounce">
-          ✅ All files uploaded successfully!
-        </div>
-      )}
+              <ScrollArea className="h-[280px] rounded-md border p-3">
+                <div className="space-y-4">
+                  {files.length === 0 && (
+                    <p className="text-sm text-muted-foreground text-center">
+                      No files selected
+                    </p>
+                  )}
+
+                  {files.map((file) => (
+                    <div
+                      key={file.id}
+                      className="border rounded-lg p-3 bg-muted/50 hover:bg-muted/70 transition"
+                    >
+                      {editingFileId === file.id ? (
+                        <Input
+                          className="mb-2"
+                          value={tempTitle}
+                          autoFocus
+                          onChange={(e) => setTempTitle(e.target.value)}
+                          onBlur={() => handleSaveTitle(file.id)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleSaveTitle(file.id)
+                          }}
+                        />
+                      ) : (
+                        <div className="flex justify-between items-center mb-2">
+                          <p className="font-medium truncate max-w-[70%]">{file.title}</p>
+                          <Button
+                            variant="link"
+                            className="text-blue-600 p-0 h-auto text-sm"
+                            onClick={() => handleEdit(file)}
+                          >
+                            ✏️ Edit
+                          </Button>
+                        </div>
+                      )}
+
+                      <Progress value={file.progress} className="h-2" />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {file.progress}% uploaded
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
+
+            {/* Right side — Selection Section */}
+            <div className="space-y-6">
+              <h2 className="text-lg font-semibold">Assign To</h2>
+
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <Label className="text-sm font-medium">Select Option</Label>
+                  <SelectOption />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="GroupName">Group Name</Label>
+                  <Input id="GroupName" type="text" placeholder="October" />
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms">Accept terms and conditions</Label>
+                </div>
+
+                <div className="max-h-[250px] overflow-y-auto pr-2">
+                  <ScrollArea className="h-72 w-full rounded-md border">
+                    <GroupSection />
+                  </ScrollArea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+
+        <CardFooter className="text-center text-xs text-muted-foreground">
+          All uploaded files and assigned groups are automatically saved.
+        </CardFooter>
+      </Card>
     </div>
   )
 }
