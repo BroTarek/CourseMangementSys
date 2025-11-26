@@ -120,3 +120,46 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Calendar grid cells */
+.custom-calendar .rdp-day {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Hover */
+.custom-calendar .rdp-day:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Selected date */
+.custom-calendar .rdp-day_selected {
+  background-color: #0f62ff !important; /* Primary color */
+  color: white;
+}
+
+/* Today's date */
+.custom-calendar .rdp-day_today {
+  border: 1px solid #0f62ff;
+}
+
+/* Header styles */
+.custom-calendar .rdp-nav_button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.custom-calendar .rdp-caption_label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
