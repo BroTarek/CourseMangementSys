@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, UserMinus, UserPlus, SearchXIcon,ChevronsUpDown,Check, Plus } from "lucide-react";
 import {
@@ -23,69 +23,11 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import MemberSection from '@/app/GroupProjects/GroupProjectComponents/MemberSection'
+import {Members} from '@/app/GroupProjects/GroupProjectComponents//MemberSection'
+import {MembersSectionProps} from '@/app/GroupProjects/GroupProjectComponents/MemberSection'
 const SecondForm = () => {
-  const Members = [
-    {
-      id: "1",
-      Name: "Mohamed",
-      Identity: "Grade-11",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "2",
-      Name: "Tarek",
-      Identity: "Grade-12",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "3",
-      Name: "Ali",
-      Identity: "Grade-10",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "4",
-      Name: "Emad",
-      Identity: "Grade-12",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "5",
-      Name: "Ramadan",
-      Identity: "Grade-11",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "6",
-      Name: "Khaled",
-      Identity: "Grade-10",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "7",
-      Name: "Omar",
-      Identity: "Grade-12",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "8",
-      Name: "Joo",
-      Identity: "Grade-11",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "9",
-      Name: "Ziad",
-      Identity: "Grade-12",
-      Avatar: "Screenshot (10).png",
-    },
-    {
-      id: "10",
-      Name: "Khaled",
-      Identity: "Grade-10",
-      Avatar: "Screenshot (10).png",
-    },
-  ];
+
   type MembersSectionProps = (typeof Members)[number];
   const [SelectedMembers, setSelectedMembers] = useState<MembersSectionProps[]>(
     []
@@ -256,7 +198,9 @@ const SecondForm = () => {
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="Search framework..." className="h-9" 
+          // onChangeCapture={(e)=>setSearched(e.target.value)}
+          />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
@@ -268,6 +212,11 @@ const SecondForm = () => {
                     setOpen(false)
                   }}
                 >
+                  {MemberSection({Name:framework.Name,
+                    id:framework.id,
+                    Avatar:framework.Avatar,
+                    Identity:framework.Identity
+                  })}
                   {framework.Name}
                   <Check
                     className={cn(

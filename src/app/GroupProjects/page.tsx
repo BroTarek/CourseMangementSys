@@ -21,12 +21,14 @@ import {
 } from "@/components/ui/popover";
 import FirstForm from '@/app/GroupProjects/GroupProjectComponents/FisrtForm'
 import SecondForm from '@/app/GroupProjects/GroupProjectComponents/SecondForm'
+import ThirdForm from "./GroupProjectComponents/ThirdForm";
 const Page = () => {
   
   return (
     <>
      {/* <FirstForm/> */}
-     <SecondForm/>
+     {/* <SecondForm/> */}
+     <ThirdForm/>
     </>
   );
 };
