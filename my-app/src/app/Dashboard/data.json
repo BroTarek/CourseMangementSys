@@ -1,0 +1,614 @@
+[
+  {
+    "id": 1,
+    "student Name": "Ali Mohamed Sherif",
+    "session": "June/26",
+    "status": "In Process",
+    "target": "18",
+    "limit": "5",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 2,
+    "Student Name": "Mohamed Tarek Mohamed",
+    "Session": "June/25",
+    "status": "Done",
+    "target": "29",
+    "limit": "24",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 3,
+    "Student Name": "Executive summary",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "10",
+    "limit": "13",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 4,
+    "Student Name": "Technical approach",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "27",
+    "limit": "23",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 5,
+    "Student Name": "Design",
+    "Session": "Narrative",
+    "status": "In Process",
+    "target": "2",
+    "limit": "16",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 6,
+    "Student Name": "Capabilities",
+    "Session": "Narrative",
+    "status": "In Process",
+    "target": "20",
+    "limit": "8",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 7,
+    "Student Name": "Integration with existing systems",
+    "Session": "Narrative",
+    "status": "In Process",
+    "target": "19",
+    "limit": "21",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 8,
+    "Student Name": "Innovation and Advantages",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "25",
+    "limit": "26",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 9,
+    "Student Name": "Overview of EMR's Innovative Solutions",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "7",
+    "limit": "23",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 10,
+    "Student Name": "Advanced Algorithms and Machine Learning",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "30",
+    "limit": "28",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 11,
+    "Student Name": "Adaptive Communication Protocols",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "9",
+    "limit": "31",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 12,
+    "Student Name": "Advantages Over Current Technologies",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "12",
+    "limit": "0",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 13,
+    "Student Name": "Past Performance",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "22",
+    "limit": "33",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 14,
+    "Student Name": "Customer Feedback and Satisfaction Levels",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "15",
+    "limit": "34",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 15,
+    "Student Name": "Implementation Challenges and Solutions",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "3",
+    "limit": "35",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 16,
+    "Student Name": "Security Measures and Data Protection Policies",
+    "Session": "Narrative",
+    "status": "In Process",
+    "target": "6",
+    "limit": "36",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 17,
+    "Student Name": "Scalability and Future Proofing",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "4",
+    "limit": "37",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 18,
+    "Student Name": "Cost-Benefit Analysis",
+    "Session": "Plain language",
+    "status": "Done",
+    "target": "14",
+    "limit": "38",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 19,
+    "Student Name": "User Training and Onboarding Experience",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "17",
+    "limit": "39",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 20,
+    "Student Name": "Future Development Roadmap",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "11",
+    "limit": "40",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 21,
+    "Student Name": "System Architecture Overview",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "24",
+    "limit": "18",
+    "group Name": "Maya Johnson"
+  },
+  {
+    "id": 22,
+    "Student Name": "Risk Management Plan",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "15",
+    "limit": "22",
+    "group Name": "Carlos Rodriguez"
+  },
+  {
+    "id": 23,
+    "Student Name": "Compliance Documentation",
+    "Session": "Legal",
+    "status": "In Process",
+    "target": "31",
+    "limit": "27",
+    "group Name": "Sarah Chen"
+  },
+  {
+    "id": 24,
+    "Student Name": "API Documentation",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "8",
+    "limit": "12",
+    "group Name": "Raj Patel"
+  },
+  {
+    "id": 25,
+    "Student Name": "User Interface Mockups",
+    "Session": "Visual",
+    "status": "In Process",
+    "target": "19",
+    "limit": "25",
+    "group Name": "Leila Ahmadi"
+  },
+  {
+    "id": 26,
+    "Student Name": "Database Schema",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "22",
+    "limit": "20",
+    "group Name": "Thomas Wilson"
+  },
+  {
+    "id": 27,
+    "Student Name": "Testing Methodology",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "17",
+    "limit": "14",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 28,
+    "Student Name": "Deployment Strategy",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "26",
+    "limit": "30",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 29,
+    "Student Name": "Budget Breakdown",
+    "Session": "Financial",
+    "status": "In Process",
+    "target": "13",
+    "limit": "16",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 30,
+    "Student Name": "Market Analysis",
+    "Session": "Research",
+    "status": "Done",
+    "target": "29",
+    "limit": "32",
+    "group Name": "Sophia Martinez"
+  },
+  {
+    "id": 31,
+    "Student Name": "Competitor Comparison",
+    "Session": "Research",
+    "status": "In Process",
+    "target": "21",
+    "limit": "19",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 32,
+    "Student Name": "Maintenance Plan",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "16",
+    "limit": "23",
+    "group Name": "Alex Thompson"
+  },
+  {
+    "id": 33,
+    "Student Name": "User Personas",
+    "Session": "Research",
+    "status": "In Process",
+    "target": "27",
+    "limit": "24",
+    "group Name": "Nina Patel"
+  },
+  {
+    "id": 34,
+    "Student Name": "Accessibility Compliance",
+    "Session": "Legal",
+    "status": "Done",
+    "target": "18",
+    "limit": "21",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 35,
+    "Student Name": "Performance Metrics",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "23",
+    "limit": "26",
+    "group Name": "David Kim"
+  },
+  {
+    "id": 36,
+    "Student Name": "Disaster Recovery Plan",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "14",
+    "limit": "17",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 37,
+    "Student Name": "Third-party Integrations",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "25",
+    "limit": "28",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 38,
+    "Student Name": "User Feedback Summary",
+    "Session": "Research",
+    "status": "Done",
+    "target": "20",
+    "limit": "15",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 39,
+    "Student Name": "Localization Strategy",
+    "Session": "Narrative",
+    "status": "In Process",
+    "target": "12",
+    "limit": "19",
+    "group Name": "Maria Garcia"
+  },
+  {
+    "id": 40,
+    "Student Name": "Mobile Compatibility",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "28",
+    "limit": "31",
+    "group Name": "James Wilson"
+  },
+  {
+    "id": 41,
+    "Student Name": "Data Migration Plan",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "19",
+    "limit": "22",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 42,
+    "Student Name": "Quality Assurance Protocols",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "30",
+    "limit": "33",
+    "group Name": "Priya Singh"
+  },
+  {
+    "id": 43,
+    "Student Name": "Stakeholder Analysis",
+    "Session": "Research",
+    "status": "In Process",
+    "target": "11",
+    "limit": "14",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 44,
+    "Student Name": "Environmental Impact Assessment",
+    "Session": "Research",
+    "status": "Done",
+    "target": "24",
+    "limit": "27",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 45,
+    "Student Name": "Intellectual Property Rights",
+    "Session": "Legal",
+    "status": "In Process",
+    "target": "17",
+    "limit": "20",
+    "group Name": "Sarah Johnson"
+  },
+  {
+    "id": 46,
+    "Student Name": "Customer Support Framework",
+    "Session": "Narrative",
+    "status": "Done",
+    "target": "22",
+    "limit": "25",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 47,
+    "Student Name": "Version Control Strategy",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "15",
+    "limit": "18",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 48,
+    "Student Name": "Continuous Integration Pipeline",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "26",
+    "limit": "29",
+    "group Name": "Michael Chen"
+  },
+  {
+    "id": 49,
+    "Student Name": "Regulatory Compliance",
+    "Session": "Legal",
+    "status": "In Process",
+    "target": "13",
+    "limit": "16",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 50,
+    "Student Name": "User Authentication System",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "28",
+    "limit": "31",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 51,
+    "Student Name": "Data Analytics Framework",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "21",
+    "limit": "24",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 52,
+    "Student Name": "Cloud Infrastructure",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "16",
+    "limit": "19",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 53,
+    "Student Name": "Network Security Measures",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "29",
+    "limit": "32",
+    "group Name": "Lisa Wong"
+  },
+  {
+    "id": 54,
+    "Student Name": "Project Timeline",
+    "Session": "Planning",
+    "status": "Done",
+    "target": "14",
+    "limit": "17",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 55,
+    "Student Name": "Resource Allocation",
+    "Session": "Planning",
+    "status": "In Process",
+    "target": "27",
+    "limit": "30",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 56,
+    "Student Name": "Team Structure and Roles",
+    "Session": "Planning",
+    "status": "Done",
+    "target": "20",
+    "limit": "23",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 57,
+    "Student Name": "Communication Protocols",
+    "Session": "Planning",
+    "status": "In Process",
+    "target": "15",
+    "limit": "18",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 58,
+    "Student Name": "Success Metrics",
+    "Session": "Planning",
+    "status": "Done",
+    "target": "30",
+    "limit": "33",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 59,
+    "Student Name": "Internationalization Support",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "23",
+    "limit": "26",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 60,
+    "Student Name": "Backup and Recovery Procedures",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "18",
+    "limit": "21",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 61,
+    "Student Name": "Monitoring and Alerting System",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "25",
+    "limit": "28",
+    "group Name": "Daniel Park"
+  },
+  {
+    "id": 62,
+    "Student Name": "Code Review Guidelines",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "12",
+    "limit": "15",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 63,
+    "Student Name": "Documentation Standards",
+    "Session": "Technical content",
+    "status": "In Process",
+    "target": "27",
+    "limit": "30",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 64,
+    "Student Name": "Release Management Process",
+    "Session": "Planning",
+    "status": "Done",
+    "target": "22",
+    "limit": "25",
+    "group Name": "Assign group Name"
+  },
+  {
+    "id": 65,
+    "Student Name": "Feature Prioritization Matrix",
+    "Session": "Planning",
+    "status": "In Process",
+    "target": "19",
+    "limit": "22",
+    "group Name": "Emma Davis"
+  },
+  {
+    "id": 66,
+    "Student Name": "Technical Debt Assessment",
+    "Session": "Technical content",
+    "status": "Done",
+    "target": "24",
+    "limit": "27",
+    "group Name": "Eddie Lake"
+  },
+  {
+    "id": 67,
+    "Student Name": "Capacity Planning",
+    "Session": "Planning",
+    "status": "In Process",
+    "target": "21",
+    "limit": "24",
+    "group Name": "Jamik Tashpulatov"
+  },
+  {
+    "id": 68,
+    "Student Name": "Service Level Agreements",
+    "Session": "Legal",
+    "status": "Done",
+    "target": "26",
+    "limit": "29",
+    "group Name": "Assign group Name"
+  }
+]

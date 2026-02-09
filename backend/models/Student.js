@@ -33,18 +33,26 @@ const studentSchema = new mongoose.Schema({
     required: [true, 'Grade is required'],
     enum: ['Grade-9', 'Grade-10', 'Grade-11', 'Grade-12'],
   },
-  class: {
-    type: String,
-    required: [true, 'Class is required'], // e.g., '10-A', '11-B'
-  },
-  avatar: {
-    type: String,
-    default: 'no-photo.jpg',
-  },
-  courses: [{
+  Projects: [{
     type: mongoose.Schema.ObjectId,
-    ref: 'Course', // Assuming we will have a Course model later
+    ref: 'Projects', // Assuming we will have a Course model later
   }],
+  Assignments: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Assignments', // Assuming we will have a Course model later
+  }],
+  Exams: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Exams'
+  },
+  parentName: {
+    type: String,
+    maxlength: [20, 'Parent name can not be longer than 20 characters'],
+  },
+  parentNumber: {
+    type: String,
+    maxlength: [20, 'Phone number can not be longer than 20 characters'],
+  },
 }, {
   timestamps: true,
 });
