@@ -16,6 +16,7 @@ import {
   IconReport,
   IconSearch,
   IconCalendar,
+  IconMessage2,
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react"
@@ -43,28 +44,28 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "http://localhost:3000/Dashboard",
+      url: "/Dashboard",
       icon: IconDashboard,
     },
     {
-      title: "Upload Assignment",
-      url: "http://localhost:3000",
+      title: "Assignments",
+      url: "/",
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
       title: "Projects",
-      url: "#",
+      url: "/GroupProjects",
       icon: IconFolder,
     },
     {
-      title: "Groups",
-      url: "#",
+      title: "Students",
+      url: "/students",
       icon: IconUsers,
+    },
+    {
+      title: "Classroom",
+      url: "/classroom",
+      icon: IconChartBar,
     },
   ],
   navClouds: [
@@ -135,13 +136,13 @@ const data = {
   documents: [
     {
       name: "Calendar",
-      url: "#",
+      url: "/calendar",
       icon: IconCalendar,
     },
     {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
+      name: "Chat",
+      url: "/communication/chat",
+      icon: IconMessage2,
     },
     {
       name: "Word Assistant",
@@ -161,9 +162,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <a href="#">
+              <a href="/">
                 <IconInnerShadowTop className="size-5!" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <span className="text-base font-semibold">Classroom Hub</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
